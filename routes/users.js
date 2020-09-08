@@ -72,6 +72,20 @@ function usersApi(app){
             next(err)
         }        
     })
+
+    router.get('/:login', async function(req, res, next){
+        const {body:username} = req;
+        const {body:password} = req;
+        try{
+            const autenticarUser = await usersService.autenticarUser({username, password});
+            res.status(200).json({
+                message: 'El usuario cargó correctamente',
+                data: autenticarUser
+            })
+        }catch{
+            next(err)
+        }        
+    })
 }
 
 module.exports = usersApi;

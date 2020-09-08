@@ -31,6 +31,16 @@ class UsersService{
         const deleteUser = await this.mongoDb.delete(this.collection,userId);
         return deleteUser;
     }
+
+    async autenticaUser({user, username, userPassword}) {
+        const autenticarUser = await this.mongoDb.get(this.collection, username, userPassword);
+        if (userPassword === user.password) {
+            return userId
+        } else {
+            console.log ('El usuario no existe')
+        }     return autenticarUser;   
+    } 
+        
 }
 
 module.exports = UsersService;
